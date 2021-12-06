@@ -1,0 +1,14 @@
+.title {
+  color: black;
+}
+.form {
+  display: flex;
+  flex-direction: column;
+}
+.text {
+  color: black;
+  display: flex;
+  flex-direction: column;
+  margin-bottom: 20px;
+  text-align: left;
+}

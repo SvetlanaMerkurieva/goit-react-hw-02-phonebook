@@ -1,9 +1,12 @@
-import "./App.css";
+import { ContactForm } from '../ContactForm/ContactForm';
+import s from './App.module.css';
 
 function App() {
   return (
-    <div className="App">
-      <header className="App-header"></header>
+    <div className={s.app}>
+      <header className={s.appHeader}>
+        <ContactForm />
+      </header>
     </div>
   );
 }
