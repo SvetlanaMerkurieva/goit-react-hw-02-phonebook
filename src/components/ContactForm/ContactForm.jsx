@@ -4,6 +4,7 @@ import s from './ContactForm.module.css';
 export class ContactForm extends Component {
   state = {
     name: '',
+    number: '',
   };
   handleInputChange = e => {
     this.setState({
@@ -14,7 +15,7 @@ export class ContactForm extends Component {
     e.preventDefault();
     this.props.onSubmit(this.state);
 
-    this.setState({ name: '' });
+    this.setState({ name: '', number: '' });
   };
   render() {
     return (
@@ -29,7 +30,19 @@ export class ContactForm extends Component {
               name="name"
               value={this.state.name}
               pattern="^[a-zA-Zа-яА-Я]+(([' -][a-zA-Zа-яА-Я ])?[a-zA-Zа-яА-Я]*)*$"
-              title="Name may contain only letters, apostrophe, dash and spaces. For example Adrian, Jacob Mercer, Charles de Batz de Castelmore d'Artagnan"
+              title="Имя может содержать только буквы, апостроф, тире и пробелы. Например Адриан, Якоб Мерсер, Шарль де Батц де Кастельмор д'Артаньян"
+              required
+              onChange={this.handleInputChange}
+            />
+          </label>
+          <label>
+            <input
+              type="tel"
+              name="number"
+              value={this.state.number}
+              placeholder="Enter number"
+              pattern="\+?\d{1,4}?[-.\s]?\(?\d{1,3}?\)?[-.\s]?\d{1,4}[-.\s]?\d{1,4}[-.\s]?\d{1,9}"
+              title="Номер телефона должен состоять из цифр и может содержать пробелы, дефисы, круглые скобки и может начинаться с +."
               required
               onChange={this.handleInputChange}
             />

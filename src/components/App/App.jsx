@@ -10,27 +10,26 @@ class App extends Component {
     contacts: [],
     name: '',
   };
-  handleFormSubmit = name => {
+  handleFormSubmit = data => {
     const contact = {
       id: shortid.generate(),
-      name: Object.values(name),
+      name: data.name,
+      number: data.number,
     };
     this.setState(prevstate => ({
       contacts: [...prevstate.contacts, contact],
+      name: data.name,
     }));
-    console.log(name);
+    console.log(contact);
   };
   render() {
     return (
-      console.log(this.state.contacts),
-      (
-        <div className={s.app}>
-          <header className={s.appHeader}>
-            <ContactForm onSubmit={this.handleFormSubmit} />
-            <ContactList contacts={this.state.contacts} />
-          </header>
-        </div>
-      )
+      <div className={s.app}>
+        <header className={s.appHeader}>
+          <ContactForm onSubmit={this.handleFormSubmit} />
+          <ContactList contacts={this.state.contacts} />
+        </header>
+      </div>
     );
   }
 }
