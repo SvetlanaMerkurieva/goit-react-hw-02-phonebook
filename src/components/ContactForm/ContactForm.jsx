@@ -20,7 +20,6 @@ export class ContactForm extends Component {
   render() {
     return (
       <section>
-        <h2 className={s.title}>Phonebook</h2>
         <form className={s.form} onSubmit={this.handleSubmit}>
           <label htmlFor="" className={s.text}>
             Name

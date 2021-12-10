@@ -1,14 +1,13 @@
 import { Component } from 'react';
 import shortid from 'shortid';
-/*import shortid from 'shortid';*/
 import { ContactForm } from '../ContactForm/ContactForm';
+import { Filter } from '../Filter/Filter';
 import { ContactList } from '../ContactList/ContactList';
 import s from './App.module.css';
 
 class App extends Component {
   state = {
     contacts: [],
-    name: '',
   };
   handleFormSubmit = data => {
     const contact = {
@@ -18,16 +17,26 @@ class App extends Component {
     };
     this.setState(prevstate => ({
       contacts: [...prevstate.contacts, contact],
-      name: data.name,
     }));
-    console.log(contact);
+  };
+  deleteContact = contactId => {
+    this.setState(prevstate => ({
+      contacts: prevstate.contacts.filter(contact => contact.id !== contactId),
+    }));
   };
   render() {
     return (
       <div className={s.app}>
         <header className={s.appHeader}>
+          <h2 className={s.title}>Phonebook</h2>
           <ContactForm onSubmit={this.handleFormSubmit} />
-          <ContactList contacts={this.state.contacts} />
+          <h2 className={s.title}>Contacts</h2>
+          <h3 className={s.title}>Найти контакт по имени</h3>
+          <Filter />
+          <ContactList
+            contacts={this.state.contacts}
+            onDeleteContact={this.deleteContact}
+          />
         </header>
       </div>
     );
