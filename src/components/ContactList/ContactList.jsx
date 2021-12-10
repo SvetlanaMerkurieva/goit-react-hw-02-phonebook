@@ -5,9 +5,13 @@ export const ContactList = ({ contacts }) => {
     <section>
       <h2 className={s.title}>Contacts</h2>
       <ul>
-        <li>
-          <p>{contacts}</p>
-        </li>
+        {contacts.map(contact => {
+          return (
+            <li className={s.text} key={contact.id}>
+              {contact.name[0]}
+            </li>
+          );
+        })}
       </ul>
     </section>
   );
