@@ -42,7 +42,7 @@ class App extends Component {
     );
   };
   render() {
-    /*const visibleContacts = this.getVisibleContact;*/
+    const visibleContacts = this.getVisibleContact();
     return (
       <div className={s.app}>
         <header className={s.appHeader}>
@@ -51,7 +51,7 @@ class App extends Component {
           <h2 className={s.title}>Contacts</h2>
           <Filter value={this.state.filter} onChange={this.changeFilter} />
           <ContactList
-            contacts={this.state.contacts}
+            contacts={visibleContacts}
             onDeleteContact={this.deleteContact}
           />
         </header>
