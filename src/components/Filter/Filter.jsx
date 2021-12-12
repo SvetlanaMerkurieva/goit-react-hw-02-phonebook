@@ -1,8 +1,15 @@
+import s from '../Filter/Filter.module.css';
+
 export const Filter = ({ value, onChange }) => {
   return (
     <label>
       Найти контакт по имени
-      <input type="text" value={value} onChange={onChange} />
+      <input
+        className={s.input}
+        type="text"
+        value={value}
+        onChange={onChange}
+      />
     </label>
   );
 };

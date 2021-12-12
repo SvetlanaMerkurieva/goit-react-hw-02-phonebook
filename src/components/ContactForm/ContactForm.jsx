@@ -21,11 +21,12 @@ export class ContactForm extends Component {
     return (
       <section>
         <form className={s.form} onSubmit={this.handleSubmit}>
-          <label htmlFor="" className={s.text}>
-            Name
+          <label className={s.text}>
+            Имя
             <input
+              className={s.input}
               type="text"
-              placeholder="Enter name"
+              placeholder="Введите имя"
               name="name"
               value={this.state.name}
               pattern="^[a-zA-Zа-яА-Я]+(([' -][a-zA-Zа-яА-Я ])?[a-zA-Zа-яА-Я]*)*$"
@@ -34,19 +35,23 @@ export class ContactForm extends Component {
               onChange={this.handleInputChange}
             />
           </label>
-          <label>
+          <label className={s.text}>
+            Номер
             <input
+              className={s.input}
               type="tel"
               name="number"
               value={this.state.number}
-              placeholder="Enter number"
+              placeholder="Введите номер телефона"
               pattern="\+?\d{1,4}?[-.\s]?\(?\d{1,3}?\)?[-.\s]?\d{1,4}[-.\s]?\d{1,4}[-.\s]?\d{1,9}"
               title="Номер телефона должен состоять из цифр и может содержать пробелы, дефисы, круглые скобки и может начинаться с +."
               required
               onChange={this.handleInputChange}
             />
           </label>
-          <button type="submit">Add contact</button>
+          <button className={s.button} type="submit">
+            Добавить контакт
+          </button>
         </form>
       </section>
     );
