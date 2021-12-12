@@ -16,10 +16,16 @@ class App extends Component {
       name: data.name,
       number: data.number,
     };
-
-    this.setState(prevstate => ({
-      contacts: [...prevstate.contacts, contact],
-    }));
+    const onAddContact = () => {
+      this.setState(prevstate => ({
+        contacts: [...prevstate.contacts, contact],
+      }));
+    };
+    if (this.state.contacts.find(item => item.name === data.name)) {
+      return window.alert(`Котакт с именем ${data.name} уже существет`);
+    } else {
+      onAddContact();
+    }
   };
   deleteContact = contactId => {
     this.setState(prevstate => ({
@@ -36,16 +42,16 @@ class App extends Component {
     );
   };
   render() {
-    const visibleContacts = this.getVisibleContact;
+    /*const visibleContacts = this.getVisibleContact;*/
     return (
       <div className={s.app}>
         <header className={s.appHeader}>
           <h2 className={s.title}>Phonebook</h2>
           <ContactForm onSubmit={this.handleFormSubmit} />
           <h2 className={s.title}>Contacts</h2>
-          <Filter value={this.state.filter} onGhange={this.changeFilter} />
+          <Filter value={this.state.filter} onChange={this.changeFilter} />
           <ContactList
-            contacts={visibleContacts}
+            contacts={this.state.contacts}
             onDeleteContact={this.deleteContact}
           />
         </header>
