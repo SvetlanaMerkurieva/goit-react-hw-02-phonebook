@@ -10,37 +10,39 @@ class App extends Component {
     contacts: [],
     filter: '',
   };
+
   handleFormSubmit = data => {
-    const contact = {
-      id: shortid.generate(),
-      name: data.name,
-      number: data.number,
-    };
-    const onAddContact = () => {
-      this.setState(prevstate => ({
-        contacts: [...prevstate.contacts, contact],
-      }));
-    };
     if (this.state.contacts.find(item => item.name === data.name)) {
       return window.alert(`Котакт с именем ${data.name} уже существет`);
     } else {
-      onAddContact();
+      const contact = {
+        id: shortid.generate(),
+        name: data.name,
+        number: data.number,
+      };
+      this.setState(prevState => ({
+        contacts: [...prevState.contacts, contact],
+      }));
     }
   };
+
   deleteContact = contactId => {
-    this.setState(prevstate => ({
-      contacts: prevstate.contacts.filter(contact => contact.id !== contactId),
+    this.setState(prevState => ({
+      contacts: prevState.contacts.filter(contact => contact.id !== contactId),
     }));
   };
+
   changeFilter = e => {
     this.setState({ filter: e.target.value });
   };
+
   getVisibleContact = () => {
     const normalValueFilter = this.state.filter.toLowerCase();
     return this.state.contacts.filter(contact =>
       contact.name.toLowerCase().includes(normalValueFilter),
     );
   };
+
   render() {
     const visibleContacts = this.getVisibleContact();
     return (
